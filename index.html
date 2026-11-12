@@ -8,15 +8,16 @@
 /* RICH ROYAL MAROON INTERIOR — NO WHITE AT ALL */
 #palaceOpening .door-interior{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#6a1a2c 0%,#440b19 45%,#2a040d 88%,#150207 100%);z-index:1;overflow:hidden;box-shadow:inset 0 0 55px rgba(0,0,0,0.95)}
 #palaceOpening .door-interior::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(218,165,78,0.2) 0%,rgba(93,18,34,0.1) 45%,transparent 75%);pointer-events:none}
-#palaceOpening .palace-panel{width:50%;height:100%;background-size:100% 100%;background-repeat:no-repeat;backface-visibility:hidden;transition:transform 3.0s cubic-bezier(.22,1,.36,1),filter 3.0s cubic-bezier(.22,1,.36,1);position:relative;z-index:2}
+#palaceOpening .palace-panel{width:50%;height:100%;background-size:100% 100%;background-repeat:no-repeat;backface-visibility:hidden;transition:transform 1.8s cubic-bezier(.22,1,.36,1),filter 1.8s cubic-bezier(.22,1,.36,1);position:relative;z-index:2}
 #palaceOpening .palace-left{background-image:url("images/door-left.jpg");transform-origin:left center}
 #palaceOpening .palace-right{background-image:url("images/door-right.jpg");transform-origin:right center}
 #palaceOpening .palace-knocker{position:absolute;left:50%;top:53%;transform:translate(-50%,-50%);width:clamp(85px,19vw,155px);height:clamp(85px,19vw,155px);border:0;background:radial-gradient(circle,#f2c879,#ac6a20 70%,#63360e);color:#fff4d8;border-radius:50%;box-shadow:0 0 0 5px #9b652b,0 4px 25px #1a0805;cursor:pointer;z-index:6;display:grid;place-items:center;transition:opacity .6s,transform .8s;overflow:hidden;padding:0;outline:none}
 #palaceOpening .palace-knocker img{width:100%;height:100%;object-fit:cover;border-radius:50%;mix-blend-mode:luminosity;display:block;pointer-events:none}
 #palaceOpening .palace-knocker:focus-visible{outline:4px solid white;outline-offset:9px}
-#palaceOpening .palace-hint{position:absolute;bottom:7%;left:0;right:0;text-align:center;font:500 12px Georgia,serif;letter-spacing:3px;color:#ffe7b5;text-shadow:0 2px 10px #000;z-index:7}
+#palaceOpening{cursor:pointer}
+#palaceOpening .palace-hint{position:absolute;bottom:7%;left:50%;transform:translateX(-50%);text-align:center;font:600 13px Georgia,serif;letter-spacing:2px;color:#fff4d8;background:rgba(38,10,7,.72);border:1px solid rgba(255,220,149,.72);border-radius:24px;padding:10px 18px;white-space:nowrap;text-shadow:0 1px 5px #1a0805;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:7;pointer-events:none}
 /* SEAMLESS ROYAL MAROON & GOLD REVEAL — NO WHITE/CREAM */
-#palaceOpening .light-reveal{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(93,18,34,0.55) 0%,rgba(68,11,25,0.78) 55%,rgba(30,3,9,0.96) 100%);opacity:0;z-index:1;transition:opacity 1.6s ease;pointer-events:none}
+#palaceOpening .light-reveal{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(93,18,34,0.55) 0%,rgba(68,11,25,0.78) 55%,rgba(30,3,9,0.96) 100%);opacity:0;z-index:1;transition:opacity 1s ease;pointer-events:none}
 #palaceOpening .soft-veil{display:none!important;opacity:0!important}
 /* FULL REALISTIC WIDE DOOR OPENING */
 #palaceOpening.is-opening .palace-left{transform:rotateY(-142deg) translateZ(-6px) scaleY(0.985);filter:brightness(.45) contrast(1.15) drop-shadow(10px 0 20px rgba(0,0,0,.85))}
@@ -25,7 +26,7 @@
 #palaceOpening.is-opening .light-reveal{opacity:.75}
 #palaceOpening.is-opening .soft-veil{display:none!important;opacity:0!important}
 #palaceOpening.is-opening .palace-hint{opacity:0}
-#palaceOpening.is-dissolving{opacity:0;transition:opacity 1.6s ease}
+#palaceOpening.is-dissolving{opacity:0;transition:opacity .8s ease}
 @keyframes knockerTap{0%{transform:translate(-50%,-50%) rotate(0deg)}25%{transform:translate(-50%,-50%) rotate(-8deg)}50%{transform:translate(-50%,-50%) rotate(6deg)}75%{transform:translate(-50%,-50%) rotate(-3deg)}100%{transform:translate(-50%,-50%) rotate(0deg)}}
 #palaceOpening .palace-knocker:hover{animation:knockerTap .5s ease}
 #palaceOpening .palace-knocker:hover:not(:disabled){animation:knockerTap .5s ease}
@@ -124,7 +125,7 @@ const wrap=document.getElementById('scratch'),canvas=document.getElementById('sc
   }
 })();window.addEventListener('resize',()=>{if(!finished)setup()});setup();
 document.getElementById('toFamilies').addEventListener('click',()=>document.getElementById('families').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));const familyObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');familyObserver.unobserve(entry.target)}})},{threshold:.12});document.querySelectorAll('.family-reveal').forEach((el,i)=>{el.style.transitionDelay=Math.min(i*110,600)+'ms';familyObserver.observe(el)});
-</script><div id="palaceOpening" role="dialog" aria-modal="true" aria-label="Open the royal wedding invitation"><div class="light-reveal"></div><div class="palace-shade"></div><div class="door-viewport"><div class="door-interior" aria-hidden="true"></div><div class="palace-panel palace-left"></div><div class="palace-panel palace-right"></div></div><div class="center-glow" aria-hidden="true"></div><button class="palace-knocker" id="palaceKnocker" aria-label="Tap the golden ring to open the palace doors"><img src="images/golden-knocker.png" alt=""></button><div class="palace-hint">TAP THE GOLDEN RING TO ENTER</div></div>
+</script><div id="palaceOpening" role="dialog" aria-modal="true" aria-label="Tap anywhere on the gate to enter"><div class="light-reveal"></div><div class="palace-shade"></div><div class="door-viewport"><div class="door-interior" aria-hidden="true"></div><div class="palace-panel palace-left"></div><div class="palace-panel palace-right"></div></div><div class="center-glow" aria-hidden="true"></div><button class="palace-knocker" id="palaceKnocker" aria-label="Tap anywhere on the gate to open the palace doors"><img src="images/golden-knocker.png" alt=""></button><div class="palace-hint">TAP ANYWHERE ON THE GATE TO ENTER</div></div>
 <script>
 (function(){
   // Always start at top of invitation
@@ -143,26 +144,29 @@ document.getElementById('toFamilies').addEventListener('click',()=>document.getE
   // Force scroll top while gate is present
   window.addEventListener('load', () => window.scrollTo(0, 0));
 
-  btn.addEventListener('click',()=>{
+  function openGate(){
     if(busy)return;
     busy=true;
     btn.disabled=true;
     window.scrollTo(0, 0);
     gate.classList.add('is-opening');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Reveal the invitation immediately while the doors continue opening above it.
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+    document.getElementById('intro')?.classList.add('ready');
+    document.body.style.overflow='';
     setTimeout(()=>{
-      // Ensure we are at the top when revealing hero section
       window.scrollTo({top:0,left:0,behavior:'instant'});
-      document.getElementById('intro')?.classList.add('ready');
-      document.body.style.overflow='';
       gate.classList.add('is-dissolving');
-    },reduced?100:2800);
+    },reduced?100:650);
     setTimeout(()=>{
       window.scrollTo({top:0,left:0,behavior:'instant'});
       gate.remove();
       document.body.style.overflow='';
-    },reduced?400:4400);
-  });
+    },reduced?350:1500);
+  }
+
+  gate.addEventListener('click', openGate);
 })();
 </script><script src="js/main.js"></script>
 </body></html>

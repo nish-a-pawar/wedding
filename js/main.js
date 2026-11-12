@@ -73,6 +73,40 @@
     cards.forEach(c=>cardObs.observe(c));
   }
 
+  // ===== GENERAL SCROLL REVEALS =====
+  const revealTargets = document.querySelectorAll([
+    '.ceremony-heading',
+    '.ceremony-stage',
+    '.ceremony-next',
+    '#wedding-events .events-kicker',
+    '#wedding-events .events-title',
+    '#wedding-events .events-intro',
+    '#wedding-events .events-ornament',
+    '#wedding-events .venue-box'
+  ].join(','));
+  if(revealTargets.length){
+    const revealImmediately = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    revealTargets.forEach((element, index)=>{
+      element.classList.add('scroll-reveal');
+      element.style.setProperty('--reveal-delay', `${(index % 4) * 90}ms`);
+      if(revealImmediately) element.classList.add('is-visible');
+    });
+
+    if(!revealImmediately && 'IntersectionObserver' in window){
+      const revealObs = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            revealObs.unobserve(entry.target);
+          }
+        });
+      },{threshold:0.12, rootMargin:'0px 0px -45px 0px'});
+      revealTargets.forEach(element=>revealObs.observe(element));
+    }else if(!revealImmediately){
+      revealTargets.forEach(element=>element.classList.add('is-visible'));
+    }
+  }
+
   // ===== PREVENT SCROLL DURING SCRATCH =====
   if(canvas){
     canvas.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});

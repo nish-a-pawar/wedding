@@ -504,3 +504,53 @@ section + section{margin-top:-2px}
     display: none !important;
   }
 }
+
+/* Task additions: scroll reveals and responsive spacing */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition:
+    opacity 0.8s ease var(--reveal-delay, 0ms),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+@media (min-width: 800px) {
+  .hero-content {
+    margin-top: 2.5rem;
+  }
+}
+@media (max-width: 799px) {
+  #intro {
+    min-height: 82svh;
+  }
+  .reveal-scene {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+}
+@media (max-width: 600px) {
+  #reveal,
+  #families {
+    min-height: auto;
+  }
+  #reveal {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  #families {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
