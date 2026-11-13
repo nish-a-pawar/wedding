@@ -1632,6 +1632,31 @@
         perspective-origin: center;
         filter: drop-shadow(0 0 14px #150704);
       }
+      #palaceOpening .door-interior {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 45%,
+          #6a1a2c 0%,
+          #440b19 45%,
+          #2a040d 88%,
+          #150207 100%
+        );
+        z-index: 1;
+        box-shadow: inset 0 0 55px rgba(0, 0, 0, 0.95);
+      }
+      #palaceOpening .door-interior::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 45%,
+          rgba(218, 165, 78, 0.2) 0%,
+          rgba(93, 18, 34, 0.1) 45%,
+          transparent 75%
+        );
+        pointer-events: none;
+      }
       #palaceOpening .palace-panel {
         width: 50%;
         height: 100%;
@@ -1726,6 +1751,29 @@
       }
       #palaceOpening .soft-veil {
         display: none;
+      }
+      #palaceOpening .center-glow {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        transform: translateX(-50%);
+        background: linear-gradient(
+          180deg,
+          transparent 15%,
+          rgba(218, 165, 78, 0.1) 30%,
+          rgba(218, 165, 78, 0.65) 50%,
+          rgba(218, 165, 78, 0.1) 70%,
+          transparent 85%
+        );
+        opacity: 0;
+        z-index: 4;
+        pointer-events: none;
+        transition: opacity 0.7s ease 0.2s;
+      }
+      #palaceOpening.is-opening .center-glow {
+        opacity: 0.85;
       }
       #palaceOpening { cursor: pointer; }
       #palaceOpening.is-opening .palace-left {
@@ -2156,9 +2204,11 @@
       <div class="light-reveal"></div>
       <div class="palace-shade"></div>
       <div class="door-viewport">
+        <div class="door-interior" aria-hidden="true"></div>
         <div class="palace-panel palace-left"></div>
         <div class="palace-panel palace-right"></div>
       </div>
+      <div class="center-glow" aria-hidden="true"></div>
       <button
         class="palace-knocker"
         id="palaceKnocker"
@@ -2186,9 +2236,9 @@
             () => {
               gate.classList.add("is-dissolving");
             },
-            reduced ? 100 : 2250,
+            reduced ? 100 : 2550,
           );
-          setTimeout(() => gate.remove(), reduced ? 350 : 3200);
+          setTimeout(() => gate.remove(), reduced ? 350 : 3650);
         }
         gate.addEventListener("click", openGate);
       })();
