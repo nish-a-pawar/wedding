@@ -1493,6 +1493,38 @@
         position: relative;
         z-index: 2;
       }
+      #kolam-scene .ceremony-heading {
+        color: #f8e7cb !important;
+        text-shadow: 0 2px 12px rgba(20, 2, 8, 0.8);
+      }
+      #kolam-scene .ceremony-heading p {
+        color: #f0c978 !important;
+      }
+      #kolam-scene .ceremony-heading h2 {
+        color: #fff3dc !important;
+      }
+      #kolam-scene .ceremony-heading span {
+        color: #e4b965 !important;
+      }
+      #kolam-scene .ceremony-next {
+        color: #4a1020 !important;
+      }
+      @media (max-width: 600px) {
+        #intro {
+          min-height: 82svh;
+        }
+        #reveal,
+        #families {
+          min-height: auto;
+        }
+        #reveal {
+          padding: 1.5rem 1rem 2rem;
+        }
+        #families {
+          padding-top: 2rem;
+          padding-bottom: 3rem;
+        }
+      }
       .nb-wedding-mark {
         display: block;
         width: clamp(100px, 22vw, 160px);
@@ -1577,7 +1609,7 @@
         inset: 0;
         z-index: 999999;
         overflow: hidden;
-        background: #25110e url("palace-background.jpg") center/cover no-repeat;
+        background: #25110e url("images/palace-background.jpg") center/cover no-repeat;
         perspective: 1400px;
         isolation: isolate;
       }
@@ -1596,7 +1628,8 @@
         position: absolute;
         inset: 11% 12% 17%;
         display: flex;
-        perspective: 1300px;
+        perspective: 1400px;
+        perspective-origin: center;
         filter: drop-shadow(0 0 14px #150704);
       }
       #palaceOpening .palace-panel {
@@ -1605,16 +1638,20 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
         backface-visibility: hidden;
+        transform-style: preserve-3d;
         transition:
-          transform 2.8s cubic-bezier(0.25, 0.7, 0.18, 1),
-          filter 2.8s;
+          transform 2.2s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 2.2s;
+        position: relative;
+        z-index: 2;
+        box-shadow: inset 0 0 18px rgba(20, 4, 1, 0.45);
       }
       #palaceOpening .palace-left {
-        background-image: url("door-left.jpg");
+        background-image: url("images/door-left.jpg");
         transform-origin: left center;
       }
       #palaceOpening .palace-right {
-        background-image: url("door-right.jpg");
+        background-image: url("images/door-right.jpg");
         transform-origin: right center;
       }
       #palaceOpening .palace-knocker {
@@ -1653,16 +1690,25 @@
       #palaceOpening .palace-hint {
         position: absolute;
         bottom: 7%;
-        left: 0;
-        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: calc(100% - 32px);
         text-align: center;
         font:
-          500 12px Georgia,
+          600 13px/1.3 Georgia,
           serif;
-        letter-spacing: 3px;
-        color: #ffe7b5;
-        text-shadow: 0 2px 10px #000;
+        letter-spacing: 2px;
+        color: #fff4d8;
+        background: rgba(38, 10, 7, 0.72);
+        border: 1px solid rgba(255, 220, 149, 0.72);
+        border-radius: 24px;
+        padding: 10px 18px;
+        white-space: normal;
+        text-shadow: 0 1px 5px #1a0805;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         z-index: 7;
+        pointer-events: none;
       }
       #palaceOpening .light-reveal {
         position: absolute;
@@ -1679,21 +1725,18 @@
         pointer-events: none;
       }
       #palaceOpening .soft-veil {
-        position: absolute;
-        inset: 0;
-        background: #fff1d7;
-        opacity: 0;
-        z-index: 5;
-        pointer-events: none;
-        transition: opacity 1.2s;
+        display: none;
       }
+      #palaceOpening { cursor: pointer; }
       #palaceOpening.is-opening .palace-left {
-        transform: rotateY(-105deg);
-        filter: brightness(0.65);
+        transform: rotateY(-112deg) translateZ(-18px) scaleY(0.985);
+        filter: brightness(0.45) contrast(1.15)
+          drop-shadow(18px 0 20px rgba(0, 0, 0, 0.85));
       }
       #palaceOpening.is-opening .palace-right {
-        transform: rotateY(105deg);
-        filter: brightness(0.65);
+        transform: rotateY(112deg) translateZ(-18px) scaleY(0.985);
+        filter: brightness(0.45) contrast(1.15)
+          drop-shadow(-18px 0 20px rgba(0, 0, 0, 0.85));
       }
       #palaceOpening.is-opening .palace-knocker {
         opacity: 0;
@@ -1704,8 +1747,7 @@
         opacity: 0.92;
       }
       #palaceOpening.is-opening .soft-veil {
-        opacity: 0.8;
-        transition-delay: 1.8s;
+        display: none;
       }
       #palaceOpening.is-opening .palace-hint {
         opacity: 0;
@@ -1721,6 +1763,17 @@
         #palaceOpening {
           background-position: center;
         }
+        #palaceOpening .palace-hint {
+          font-size: 11px;
+          letter-spacing: 1.2px;
+          padding: 9px 14px;
+        }
+        #palaceOpening.is-opening .palace-left {
+          transform: rotateY(-108deg) translateZ(-14px) scaleY(0.985);
+        }
+        #palaceOpening.is-opening .palace-right {
+          transform: rotateY(108deg) translateZ(-14px) scaleY(0.985);
+        }
       }
       @media (prefers-reduced-motion: reduce) {
         #palaceOpening .palace-panel {
@@ -1735,7 +1788,11 @@
   <body>
     <main>
       <section class="scene opening" id="intro">
-        <img class="nb-intro-mark" src="nb-monogram.png" alt="NB monogram" />
+        <img
+          class="nb-intro-mark"
+          src="images/nb-monogram.png"
+          alt="NB monogram"
+        />
         <div class="painting"></div>
         <div class="hero-content">
           <span class="eyebrow">A celebration of togetherness</span
@@ -1789,7 +1846,7 @@
       >
         <img
           class="temple-art temple-left"
-          src="temple-ivory.png"
+          src="images/temple-ivory.png"
           alt=""
           aria-hidden="true"
           loading="lazy"
@@ -1873,7 +1930,7 @@
         <div class="events-inner">
           <img
             class="nb-wedding-mark"
-            src="nb-monogram.png"
+            src="images/nb-monogram.png"
             alt="NB wedding monogram"
             loading="lazy"
           />
@@ -1929,7 +1986,7 @@
       </section>
     </main>
     <div
-      aria-label="Open wedding invitation"
+      aria-label="Tap anywhere around the gate to enter"
       aria-modal="true"
       class="wax-overlay"
       id="curtain"
@@ -2105,35 +2162,35 @@
       <button
         class="palace-knocker"
         id="palaceKnocker"
-        aria-label="Tap the golden ring to open the palace doors"
+        aria-label="Tap anywhere around the gate to open the palace doors"
       >
-        <img src="golden-knocker.png" alt="" />
+        <img src="images/golden-knocker.png" alt="" />
       </button>
-      <div class="palace-hint">TAP THE GOLDEN RING TO ENTER</div>
+      <div class="palace-hint">TAP ANYWHERE AROUND THE GATE TO ENTER</div>
       <div class="soft-veil"></div>
     </div>
     <script>
       (function () {
         const gate = document.getElementById("palaceOpening");
-        const btn = document.getElementById("palaceKnocker");
         let busy = false;
-        btn.addEventListener("click", () => {
+        function openGate() {
           if (busy) return;
           busy = true;
           gate.classList.add("is-opening");
+          document.getElementById("intro")?.classList.add("ready");
+          document.body.style.overflow = "";
           const reduced = matchMedia(
             "(prefers-reduced-motion: reduce)",
           ).matches;
           setTimeout(
             () => {
-              document.getElementById("sealBtn")?.click();
-              document.getElementById("intro")?.classList.add("ready");
               gate.classList.add("is-dissolving");
             },
-            reduced ? 100 : 3000,
+            reduced ? 100 : 2250,
           );
-          setTimeout(() => gate.remove(), reduced ? 500 : 5100);
-        });
+          setTimeout(() => gate.remove(), reduced ? 350 : 3200);
+        }
+        gate.addEventListener("click", openGate);
       })();
     </script>
     <script data-petal-shower-script>
