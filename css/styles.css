@@ -1319,18 +1319,20 @@ body::before {
   position: relative;
   z-index: 3;
   text-align: center;
+  margin: 6px 0;
 }
 .ceremony-heading p {
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: #7e4439;
+  margin: 0 0 4px;
 }
 .ceremony-heading h2 {
   font-family: Georgia, serif;
   font-size: clamp(30px, 5vw, 55px);
   font-weight: 400;
-  margin: 10px 0;
+  margin: 0;
 }
 .ceremony-heading span {
   color: #ad8447;

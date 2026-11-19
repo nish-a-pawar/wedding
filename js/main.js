@@ -117,4 +117,154 @@
     if(hint) hint.style.display='none';
   }
 
+  // ===== BACKGROUND MUSIC CONTROLLER =====
+  const bgMusic = document.getElementById('weddingMusic');
+  const musicToggleBtn = document.getElementById('musicToggleBtn');
+  const musicStatusText = document.getElementById('musicStatusText');
+  const TARGET_VOLUME = 0.22; // Mand aavaj (soft/soothing ambient volume, not harsh)
+  let isMusicPlaying = false;
+  let fadeInterval = null;
+
+  function updateMusicUI(playing){
+    isMusicPlaying = playing;
+    if(musicToggleBtn){
+      if(playing){
+        musicToggleBtn.classList.add('is-playing');
+        musicToggleBtn.setAttribute('aria-label', 'Pause background music (currently playing softly)');
+      } else {
+        musicToggleBtn.classList.remove('is-playing');
+        musicToggleBtn.setAttribute('aria-label', 'Play soft background music');
+      }
+    }
+    if(musicStatusText){
+      musicStatusText.textContent = playing ? 'Music: ON' : 'Music: OFF';
+    }
+  }
+
+  function playMusicSoftly(){
+    if(!bgMusic) return;
+    clearInterval(fadeInterval);
+    bgMusic.volume = 0.04;
+    const playPromise = bgMusic.play();
+    if(playPromise !== undefined){
+      playPromise.then(()=>{
+        updateMusicUI(true);
+        // Smooth gentle fade-in to soft volume
+        let currentVol = bgMusic.volume;
+        fadeInterval = setInterval(()=>{
+          if(currentVol < TARGET_VOLUME){
+            currentVol = Math.min(TARGET_VOLUME, currentVol + 0.02);
+            bgMusic.volume = currentVol;
+          } else {
+            clearInterval(fadeInterval);
+          }
+        }, 80);
+      }).catch(err=>{
+        console.log('Autoplay waiting for user gesture:', err);
+        updateMusicUI(false);
+      });
+    }
+  }
+
+  function pauseMusicGently(){
+    if(!bgMusic) return;
+    clearInterval(fadeInterval);
+    let currentVol = bgMusic.volume;
+    fadeInterval = setInterval(()=>{
+      if(currentVol > 0.04){
+        currentVol = Math.max(0, currentVol - 0.03);
+        bgMusic.volume = currentVol;
+      } else {
+        clearInterval(fadeInterval);
+        bgMusic.pause();
+        bgMusic.volume = TARGET_VOLUME;
+        updateMusicUI(false);
+      }
+    }, 40);
+  }
+
+  function toggleMusic(){
+    if(!bgMusic) return;
+    if(bgMusic.paused || !isMusicPlaying){
+      playMusicSoftly();
+    } else {
+      pauseMusicGently();
+    }
+  }
+
+  if(musicToggleBtn){
+    musicToggleBtn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      toggleMusic();
+    });
+  }
+
+  // Expose global play function for palace gate opening
+  window.playWeddingMusic = function(){
+    if(!isMusicPlaying){
+      playMusicSoftly();
+    }
+  };
+
+  // Auto-start smoothly on first user interaction if not started yet
+  const firstGestureStart = () => {
+    if(!isMusicPlaying){
+      playMusicSoftly();
+    }
+    document.removeEventListener('pointerdown', firstGestureStart);
+  };
+  document.addEventListener('pointerdown', firstGestureStart, { once: true });
+
+  // ===== EVENT DETAILS DIALOG =====
+  const eventDialog = document.getElementById('eventDetailsDialog');
+  const eventTriggers = document.querySelectorAll('.event-card-interactive');
+  const closeEventDialogBtn = document.getElementById('eventDetailsClose');
+  const eventDialogFields = {
+    title: document.getElementById('eventDetailsTitle'),
+    date: document.getElementById('eventDetailsDate'),
+    time: document.getElementById('eventDetailsTime'),
+    venue: document.getElementById('eventDetailsVenue'),
+    directions: document.getElementById('eventDetailsDirections')
+  };
+
+  if(eventDialog && closeEventDialogBtn){
+    eventTriggers.forEach(trigger=>{
+      trigger.addEventListener('click', ()=>{
+        eventDialogFields.title.textContent = trigger.dataset.eventTitle;
+        eventDialogFields.date.textContent = trigger.dataset.eventDate;
+        eventDialogFields.time.textContent = trigger.dataset.eventTime;
+        eventDialogFields.venue.textContent = trigger.dataset.eventVenue;
+        eventDialogFields.directions.href = 'https://www.google.com/maps/dir/?api=1&destination=' +
+          encodeURIComponent(trigger.dataset.mapQuery);
+        eventDialog.showModal();
+      });
+    });
+
+    closeEventDialogBtn.addEventListener('click', ()=>eventDialog.close());
+    eventDialog.addEventListener('click', event=>{
+      if(event.target === eventDialog) eventDialog.close();
+    });
+  }
+
+  // Direct Calendar Links
+  (function initDirectCalendarLinks(){
+    const year = 2026;
+    const wedBtn = document.getElementById('weddingGCalDirect');
+    if(wedBtn){
+      wedBtn.href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' +
+        encodeURIComponent('Neha & Basavaraj Wedding Muhurtham') +
+        '&dates=' + year + '1220T023000Z/' + year + '1220T070000Z' +
+        '&details=' + encodeURIComponent('Auspicious Wedding Muhurtam of Neha & Basavaraj.\n\nDate: 20 December 2026\nTime: 8:00 AM\nVenue: Shivagange Conventional Hall, Davangere') +
+        '&location=' + encodeURIComponent('Shivagange Conventional Hall, Kundavada Road, Vinayaka Badavane, Davangere, Karnataka 577006');
+    }
+    const recBtn = document.getElementById('receptionGCalDirect');
+    if(recBtn){
+      recBtn.href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' +
+        encodeURIComponent('Neha & Basavaraj Wedding Reception') +
+        '&dates=' + year + '1225T140000Z/' + year + '1225T180000Z' +
+        '&details=' + encodeURIComponent('Grand Wedding Reception of Neha & Basavaraj.\n\nDate: 25 December 2026\nTime: 7:30 PM onwards\nVenue: Vijaypur, Karnataka') +
+        '&location=' + encodeURIComponent('Vijaypur, Karnataka');
+    }
+  })();
+
 })();

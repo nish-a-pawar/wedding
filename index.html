@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en"><head><meta content="#510b18" name="theme-color"/><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><title>Neha &amp; Basavaraj | Wedding Invitation</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link rel="stylesheet" href="css/styles.css"/><link rel="stylesheet" href="css/interaction.css"/><style>
 #curtain, .wax-overlay, .wax-leaf, .royal-curtain{display:none!important;visibility:hidden!important}
@@ -39,7 +39,26 @@
   #palaceOpening.is-opening .palace-right{transform:rotateY(138deg) translateZ(-4px) scaleY(0.985)}
 }
 @media(prefers-reduced-motion:reduce){#palaceOpening .palace-panel{transition-duration:.01s}#palaceOpening.is-dissolving{transition-duration:.3s}}
-</style></head><body><main><section class="scene opening" id="intro"><img class="nb-intro-mark" src="images/nb-monogram.png" alt="NB monogram"><div class="hero-content"><span class="eyebrow">A celebration of togetherness</span><img alt="Faceless illustration of Neha and Basavaraj in traditional South Indian wedding attire" class="couple" src="images/couple-illustration.webp"/><div class="names">Neha <span class="amp">&amp;</span> Basavaraj</div><div class="sub">Together, with love and blessings</div><button class="btn" id="toScratch">Discover Our Dates ↓</button><span class="scroll-hint">SCROLL TO CONTINUE</span></div></section><section class="scene reveal-scene" id="reveal"><div class="painting"></div><div class="scratch-wrap"><span class="eyebrow">Our special moments</span><h2>A Date to Remember</h2><p>Scratch the golden card to reveal our celebrations</p><div class="scratch" id="scratch"><div class="dates"><b>RECEPTION</b><strong>19 December · 7:30 PM</strong><hr/><b>MUHURTHAM</b><strong>20 December · 8:00 AM</strong></div><div class="scratch-hint" id="scratchHint" aria-hidden="true"><span class="hint-finger">&#x1F446;</span><span class="hint-text">Scratch to Reveal</span></div><canvas aria-label="Scratch coating hiding the reception and Muhurtham dates" id="scratchCanvas"></canvas></div><div class="scratch-controls">
+</style></head><body>
+<!-- Luxury Background Music Element -->
+<audio id="weddingMusic" src="audio/wedding-music.mp3" preload="auto" loop></audio>
+
+<!-- Floating Ambient Music Controller -->
+<div class="music-controller" id="musicController" role="region" aria-label="Background Music Controls">
+  <button type="button" id="musicToggleBtn" class="music-toggle-btn" aria-label="Play soft background music" title="Toggle background music">
+    <span class="music-disc" aria-hidden="true">
+      <svg class="music-note-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+      <span class="sound-wave" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </span>
+    <span class="music-label" id="musicStatusText">Music: OFF</span>
+  </button>
+</div>
+
+<main><section class="scene opening" id="intro"><img class="nb-intro-mark" src="images/nb-monogram.png" alt="NB monogram"><div class="hero-content"><span class="eyebrow">A celebration of togetherness</span><img alt="Faceless illustration of Neha and Basavaraj in traditional South Indian wedding attire" class="couple" src="images/couple-illustration.webp"/><div class="names">Neha <span class="amp">&amp;</span> Basavaraj</div><div class="sub">Together, with love and blessings</div><button class="btn" id="toScratch">Discover Our Dates ↓</button><span class="scroll-hint">SCROLL TO CONTINUE</span></div></section><section class="scene reveal-scene" id="reveal"><div class="painting"></div><div class="scratch-wrap"><span class="eyebrow">Our special moments</span><h2>A Date to Remember</h2><p>Scratch the golden card to reveal our celebrations</p><div class="scratch" id="scratch"><div class="dates"><b>WEDDING MUHURTAM</b><strong>20 December 2026 · 8:00 AM</strong><hr/><b>RECEPTION</b><strong>25 December 2026 · 7:30 PM</strong></div><div class="scratch-hint" id="scratchHint" aria-hidden="true"><span class="hint-finger">&#x1F446;</span><span class="hint-text">Scratch to Reveal</span></div><canvas aria-label="Scratch coating hiding the reception and Muhurtam dates" id="scratchCanvas"></canvas></div><div class="scratch-controls">
   <button class="btn" id="revealBtn">Reveal Dates</button><button class="btn btn-calendar" id="openCalendarBtn" type="button" hidden>📅 Mark Your Calendar</button>
   <dialog class="calendar-dialog" id="calendarDialog" aria-labelledby="calendarDialogTitle">
     <button class="calendar-dialog-close" type="button" aria-label="Close calendar options">×</button>
@@ -60,7 +79,51 @@
   <a class="ceremony-next" href="#wedding-events">Wedding Celebrations ↓</a>
 </section>
 <section class="events-scene" id="wedding-events" aria-labelledby="eventsTitle">
-  <canvas class="fireworks-canvas" id="fireworksCanvas" aria-hidden="true"></canvas><div class="petal-shower" aria-hidden="true"></div><img class="temple-illustration temple-bg-art" src="images/temple-ivory.png" alt="" aria-hidden="true" loading="lazy"><div class="events-inner"><img class="nb-wedding-mark" src="images/nb-monogram.png" alt="NB wedding monogram" loading="lazy"><div class="events-kicker">Neha &amp; Basavaraj</div><h2 class="events-title" id="eventsTitle">The Wedding Celebrations</h2><p class="events-intro">With the blessings of our families, we joyfully invite you to celebrate with us.</p><div class="events-ornament">✦ ❁ ✦</div><div class="event-grid"><article class="event-card"><h3>Reception</h3><p class="event-date">19 December</p><p class="event-time">7:30 PM onwards</p></article><article class="event-card"><h3>Wedding Muhurtham</h3><p class="event-date">20 December</p><p class="event-time">8:00 AM</p></article></div><div class="venue-box"><div class="events-kicker">Join us at</div><h3 class="venue-heading">Shivagange Conventional Hall</h3><p class="venue-address">Kundavada Road, Vinayaka Badavane,<br>Davangere, Karnataka 577006</p><div class="venue-map"><iframe title="Google Maps: Shivagange Conventional Hall, Davangere" src="https://www.google.com/maps?q=Shivagange%20Conventional%20Hall%2C%20Kundavada%20Road%2C%20Vinayaka%20Badavane%2C%20Davangere%2C%20Karnataka%20577006&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><a class="venue-directions" href="https://www.google.com/maps/dir/?api=1&destination=Shivagange%20Conventional%20Hall%2C%20Kundavada%20Road%2C%20Vinayaka%20Badavane%2C%20Davangere%2C%20Karnataka%20577006" target="_blank" rel="noopener noreferrer">Get Directions on Google Maps ↗</a><p class="venue-map-note">The interactive map requires an internet connection.</p></div></div></section></main><script>
+  <canvas class="fireworks-canvas" id="fireworksCanvas" aria-hidden="true"></canvas>
+  <div class="petal-shower" aria-hidden="true"></div>
+  <img class="temple-illustration temple-bg-art" src="images/temple-ivory.png" alt="" aria-hidden="true" loading="lazy">
+  <div class="events-inner">
+    <img class="nb-wedding-mark" src="images/nb-monogram.png" alt="NB wedding monogram" loading="lazy">
+    <div class="events-kicker">Neha &amp; Basavaraj</div>
+    <h2 class="events-title" id="eventsTitle">The Wedding Celebrations</h2>
+    <p class="events-intro">With the blessings of our families, we joyfully invite you to celebrate with us.</p>
+    <div class="events-ornament">✦ ❁ ✦</div>
+    <div class="event-grid">
+      <button class="event-card event-card-interactive" id="receptionCard" type="button" aria-haspopup="dialog"
+        data-event-title="Wedding Reception" data-event-date="25 December 2026" data-event-time="7:30 PM onwards"
+        data-event-venue="Vijaypur, Karnataka" data-map-query="Vijaypur, Karnataka, India">
+        <h3>Reception</h3><p class="event-date">25 December 2026</p><p class="event-time">7:30 PM onwards</p>
+      </button>
+      <button class="event-card event-card-interactive" id="weddingMuhurthamCard" type="button" aria-haspopup="dialog"
+        data-event-title="Wedding Muhurtam" data-event-date="20 December 2026" data-event-time="8:00 AM"
+        data-event-venue="Shivagange Conventional Hall, Kundavada Road, Vinayaka Badavane, Davangere, Karnataka 577006"
+        data-map-query="Shivagange Conventional Hall, Kundavada Road, Vinayaka Badavane, Davangere, Karnataka 577006">
+        <h3>Wedding Muhurtam</h3><p class="event-date">20 December 2026</p><p class="event-time">8:00 AM</p>
+      </button>
+    </div>
+    <dialog class="event-details-dialog" id="eventDetailsDialog" aria-labelledby="eventDetailsTitle">
+      <button class="venue-card-close" id="eventDetailsClose" type="button" aria-label="Close event details">×</button>
+      <div class="venue-info-badge">✦ Event Details</div>
+      <h2 class="venue-date-highlight" id="eventDetailsTitle"></h2>
+      <dl class="event-details-list">
+        <div><dt>Date</dt><dd id="eventDetailsDate"></dd></div>
+        <div><dt>Time</dt><dd id="eventDetailsTime"></dd></div>
+        <div><dt>Venue</dt><dd id="eventDetailsVenue"></dd></div>
+      </dl>
+      <div class="venue-actions">
+        <a class="venue-directions-btn" id="eventDetailsDirections" href="#" target="_blank" rel="noopener noreferrer">Get Directions ↗</a>
+      </div>
+    </dialog>
+    <div class="venue-box">
+      <div class="events-kicker">Join us at</div>
+      <h3 class="venue-heading">Shivagange Conventional Hall</h3>
+      <p class="venue-address">Kundavada Road, Vinayaka Badavane,<br>Davangere, Karnataka 577006</p>
+      <div class="venue-map"><iframe title="Google Maps: Shivagange Conventional Hall, Davangere" src="https://www.google.com/maps?q=Shivagange%20Conventional%20Hall%2C%20Kundavada%20Road%2C%20Vinayaka%20Badavane%2C%20Davangere%2C%20Karnataka%20577006&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+      <a class="venue-directions" href="https://www.google.com/maps/dir/?api=1&destination=Shivagange%20Conventional%20Hall%2C%20Kundavada%20Road%2C%20Vinayaka%20Badavane%2C%20Davangere%2C%20Karnataka%20577006" target="_blank" rel="noopener noreferrer">Get Directions on Google Maps ↗</a>
+      <p class="venue-map-note">The interactive map requires an internet connection.</p>
+    </div>
+  </div>
+</section></main><script>
 document.body.style.overflow='hidden';document.getElementById('toScratch').onclick=()=>document.getElementById('reveal').scrollIntoView({behavior:'smooth'});
 const wrap=document.getElementById('scratch'),canvas=document.getElementById('scratchCanvas'),ctx=canvas.getContext('2d',{willReadFrequently:true});let drawing=false,finished=false,last=null,strokeCount=0;function setup(){if(finished)return;let r=wrap.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0);let gradient=ctx.createLinearGradient(0,0,r.width,r.height);gradient.addColorStop(0,'#a87627');gradient.addColorStop(.32,'#f7e0a0');gradient.addColorStop(.65,'#c99c48');gradient.addColorStop(1,'#8c5b1c');ctx.fillStyle=gradient;ctx.fillRect(0,0,r.width,r.height);ctx.fillStyle='#5a3310';ctx.textAlign='center';ctx.font='600 22px Cormorant Garamond,serif';ctx.fillText('A Special Date Awaits',r.width/2,r.height/2-10);ctx.font='500 12px Montserrat,sans-serif';ctx.fillText('✦ SCRATCH TO REVEAL ✦',r.width/2,r.height/2+22)}function point(e){let r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}function scratchTo(p){ctx.globalCompositeOperation='destination-out';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=46;ctx.beginPath();ctx.moveTo(last?.x??p.x,last?.y??p.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;strokeCount++}function reveal(){
   if(finished)return;
@@ -84,12 +147,12 @@ const wrap=document.getElementById('scratch'),canvas=document.getElementById('sc
   }
 };
 (function initCalendarLogic(){
-  const year=(new Date().getMonth()===11&&new Date().getDate()>20)?new Date().getFullYear()+1:new Date().getFullYear();
+  const year=2026;
   const g=document.getElementById('gcalBtn');
   if(g){
-    g.href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Neha & Basavaraj Wedding')+
-      '&dates='+year+'1219T140000Z/'+year+'1220T083000Z'+
-      '&details='+encodeURIComponent('With the blessings of our families, we joyfully invite you to celebrate with us.\n\n✦ Reception: 19 December · 7:30 PM onwards\n✦ Wedding Muhurtham: 20 December · 8:00 AM\n\nVenue: Shivagange Conventional Hall, Davangere')+
+    g.href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Neha & Basavaraj Wedding Muhurtam')+
+      '&dates='+year+'1220T023000Z/'+year+'1220T070000Z'+
+      '&details='+encodeURIComponent('With the blessings of our families, we joyfully invite you to celebrate with us.\n\n✦ Wedding Muhurtam: 20 December 2026 · 8:00 AM\n✦ Reception: 25 December 2026 · 7:30 PM onwards at Vijaypur, Karnataka')+
       '&location='+encodeURIComponent('Shivagange Conventional Hall, Kundavada Road, Vinayaka Badavane, Davangere, Karnataka 577006');
   }
   const ic=document.getElementById('icalBtn');
@@ -102,13 +165,23 @@ const wrap=document.getElementById('scratch'),canvas=document.getElementById('sc
         'CALSCALE:GREGORIAN',
         'METHOD:PUBLISH',
         'BEGIN:VEVENT',
-        'UID:neha-basavaraj-wedding-'+year+'@wedding-invite',
+        'UID:neha-basavaraj-wedding-muhurtam-'+year+'@wedding-invite',
         'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z',
-        'DTSTART:'+year+'1219T140000Z',
-        'DTEND:'+year+'1220T083000Z',
-        'SUMMARY:Neha & Basavaraj Wedding',
-        'DESCRIPTION:With the blessings of our families\\, we joyfully invite you to celebrate with us.\\n\\n✦ Reception: 19 December · 7:30 PM onwards\\n✦ Wedding Muhurtham: 20 December · 8:00 AM\\n\\nVenue: Shivagange Conventional Hall\\, Kundavada Road\\, Davangere',
+        'DTSTART:'+year+'1220T023000Z',
+        'DTEND:'+year+'1220T070000Z',
+        'SUMMARY:Neha & Basavaraj Wedding Muhurtam',
+        'DESCRIPTION:Wedding Muhurtam: 20 December 2026\\, 8:00 AM\\nReception: 25 December 2026\\, 7:30 PM onwards at Vijaypur\\, Karnataka',
         'LOCATION:Shivagange Conventional Hall\\, Kundavada Road\\, Vinayaka Badavane\\, Davangere\\, Karnataka 577006',
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'BEGIN:VEVENT',
+        'UID:neha-basavaraj-reception-'+year+'@wedding-invite',
+        'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z',
+        'DTSTART:'+year+'1225T140000Z',
+        'DTEND:'+year+'1225T180000Z',
+        'SUMMARY:Neha & Basavaraj Wedding Reception',
+        'DESCRIPTION:Wedding Reception: 25 December 2026\\, 7:30 PM onwards',
+        'LOCATION:Vijaypur\\, Karnataka',
         'STATUS:CONFIRMED',
         'END:VEVENT',
         'END:VCALENDAR'
