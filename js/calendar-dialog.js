@@ -3,6 +3,7 @@
   const dialog = document.getElementById('calendarDialog');
   const closeButton = dialog?.querySelector('.calendar-dialog-close');
   const googleButton = document.getElementById('gcalBtn');
+  const receptionGoogleButton = document.getElementById('gcalReceptionBtn');
   const appleButton = document.getElementById('icalBtn');
 
   if (!calendarButton || !dialog || !closeButton) return;
@@ -17,5 +18,6 @@
   });
 
   googleButton?.addEventListener('click', () => dialog.close());
+  receptionGoogleButton?.addEventListener('click', () => dialog.close());
   appleButton?.addEventListener('click', () => dialog.close());
 })();

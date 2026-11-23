@@ -179,6 +179,169 @@ canvas {
   pointer-events: none;
   transition: opacity 0.9s;
 }
+.reveal-venue {
+  margin-top: 14px;
+  padding: 14px 12px;
+  border: 1px solid #d2ad6a;
+  border-radius: 10px;
+  background: rgba(255, 248, 232, 0.72);
+  text-align: center;
+  color: #4a1020;
+  animation: venueReveal 0.55s ease both;
+}
+.reveal-venues {
+  margin-top: 14px;
+  animation: venueReveal 0.55s ease both;
+}
+.reveal-venues[hidden] {
+  display: none;
+}
+.reveal-venues > span {
+  display: block;
+  margin-bottom: 8px;
+  font: 600 10px Montserrat, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a5d36;
+}
+.reveal-venue-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.reveal-venue-buttons button {
+  min-height: 58px;
+  border: 1px solid #c69c50;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #fff8e8, #ead8b4);
+  color: #5a1726;
+  font: 600 12px Montserrat, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(64, 25, 22, 0.12);
+}
+.reveal-venue-buttons button:hover,
+.reveal-venue-buttons button:focus-visible {
+  background: #5a1726;
+  color: #fff5dc;
+  outline: none;
+}
+.reveal-venue-buttons small {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+  font-weight: 500;
+  opacity: 0.82;
+}
+.reveal-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+.reveal-actions button {
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1px solid #c69c50;
+  border-radius: 999px;
+  background: #5b1725;
+  color: #fff3df;
+  font: 600 12px Montserrat, sans-serif;
+  letter-spacing: 0.04em;
+  box-shadow: 0 5px 14px rgba(64, 25, 22, 0.2);
+  cursor: pointer;
+}
+.reveal-actions button:hover,
+.reveal-actions button:focus-visible {
+  background: #731e30;
+  color: #fff3df;
+}
+.venue-copy-btn {
+  min-height: 44px;
+  border: 1.5px solid rgba(198, 164, 106, 0.75);
+  border-radius: 999px;
+  background: #f7e7c4;
+  color: #4a101a;
+  font: 600 12px Montserrat, sans-serif;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+.venue-copy-btn:hover,
+.venue-copy-btn:focus-visible {
+  background: #e8ca8f;
+  color: #38101a;
+}
+.event-action-status {
+  min-height: 1.4em;
+  margin: 8px 0 0;
+  color: #79533d;
+  font-size: 12px;
+  text-align: center;
+}
+.back-to-top {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 9999;
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 16px;
+  border: 1px solid rgba(228, 188, 117, 0.85);
+  border-radius: 999px;
+  background: rgba(68, 11, 25, 0.94);
+  color: #fff3df;
+  box-shadow: 0 5px 18px rgba(15, 2, 6, 0.35);
+  font: 600 13px Montserrat, sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: none;
+  }
+}
+.reveal-venue[hidden] {
+  display: none;
+}
+.reveal-venue span {
+  display: block;
+  margin-bottom: 5px;
+  font: 600 10px Montserrat, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a5d36;
+}
+.reveal-venue strong {
+  display: block;
+  font: 600 20px "Cormorant Garamond", serif;
+}
+.reveal-venue p {
+  margin: 4px 0 8px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.reveal-venue a {
+  color: #6d2432;
+  font: 600 11px Montserrat, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@keyframes venueReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .scratch-controls {
   display: flex;
   justify-content: center;
@@ -1396,8 +1559,11 @@ body::before {
 }
 @media (max-width: 600px) {
   .kolam-scene.ceremony-v2 {
-    min-height: 90svh;
-    padding: 45px 12px 30px;
+    min-height: 96svh;
+    padding: 72px 12px 30px;
+  }
+  .ceremony-heading {
+    margin: 0 0 18px;
   }
   .ceremony-stage {
     width: 100%;
@@ -1443,9 +1609,37 @@ main {
 #families .family-card * {
   color: inherit;
 }
+#families .family-card {
+  padding: 24px 16px;
+}
+#families .family-card h3 {
+  margin: 10px 0 6px;
+  font-size: clamp(28px, 4vw, 42px);
+}
+#families .family-card p {
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
 #families .family-grid {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
   position: relative;
   z-index: 2;
+}
+.family-name-divider {
+  color: #c6a46a;
+  font: italic 36px/1 "Cormorant Garamond", serif;
+}
+@media (max-width: 620px) {
+  #families .family-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .family-name-divider {
+    font-size: 30px;
+    line-height: 0.8;
+  }
 }
 #families .family-inner {
   position: relative;

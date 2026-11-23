@@ -226,6 +226,8 @@
     venue: document.getElementById('eventDetailsVenue'),
     directions: document.getElementById('eventDetailsDirections')
   };
+  const copyEventVenueBtn = document.getElementById('eventDetailsCopy');
+  const eventActionStatus = document.getElementById('eventActionStatus');
 
   if(eventDialog && closeEventDialogBtn){
     eventTriggers.forEach(trigger=>{
@@ -241,6 +243,21 @@
     });
 
     closeEventDialogBtn.addEventListener('click', ()=>eventDialog.close());
+    if(copyEventVenueBtn){
+      copyEventVenueBtn.addEventListener('click', async ()=>{
+        const venue = eventDialogFields.venue?.textContent || '';
+        try{
+          await window.copyToClipboard(venue);
+          copyEventVenueBtn.textContent = 'Address Copied';
+          if(eventActionStatus) eventActionStatus.textContent = 'Venue address copied to clipboard.';
+          setTimeout(()=>{copyEventVenueBtn.textContent='Copy Address'},1800);
+        }catch(error){
+          copyEventVenueBtn.textContent = 'Unable to Copy';
+          if(eventActionStatus) eventActionStatus.textContent = 'Could not copy the address. Please select and copy it manually.';
+          setTimeout(()=>{copyEventVenueBtn.textContent='Copy Address'},1800);
+        }
+      });
+    }
     eventDialog.addEventListener('click', event=>{
       if(event.target === eventDialog) eventDialog.close();
     });
